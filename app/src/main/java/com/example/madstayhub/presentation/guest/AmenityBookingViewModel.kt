@@ -38,13 +38,39 @@ class AmenityBookingViewModel @Inject constructor() : ViewModel() {
     }
 
     private fun loadAmenities() {
-        val list = listOf(
-            AmenityItem("1", "Swimming Pool", "06:00 AM - 10:00 PM", R.drawable.swimming_pool),
-            AmenityItem("2", "Luxury Gym & Wellness Center", "24 Hours Open", R.drawable.gym),
-            AmenityItem("3", "Rejuvenating Spa & Massage", "09:00 AM - 09:00 PM", R.drawable.spa),
-            AmenityItem("4", "Executive Conference Room", "08:00 AM - 08:00 PM", R.drawable.conferrence_room)
-        )
-        _amenities.value = list
+        db.collection("amenities").addSnapshotListener { snapshot, error ->
+            if (error != null || snapshot == null) return@addSnapshotListener
+            
+            if (snapshot.isEmpty) {
+                // Populate default amenities if Firestore is empty
+                val defaults = listOf(
+                    hashMapOf("name" to "Swimming Pool", "hours" to "06:00 AM - 10:00 PM"),
+                    hashMapOf("name" to "Luxury Gym & Wellness Center", "hours" to "24 Hours Open"),
+                    hashMapOf("name" to "Rejuvenating Spa & Massage", "hours" to "09:00 AM - 09:00 PM"),
+                    hashMapOf("name" to "Executive Conference Room", "hours" to "08:00 AM - 08:00 PM")
+                )
+                for (item in defaults) {
+                    db.collection("amenities").document().set(item)
+                }
+                return@addSnapshotListener
+            }
+
+            val list = snapshot.documents.mapNotNull { doc ->
+                val name = doc.getString("name") ?: return@mapNotNull null
+                val hours = doc.getString("hours") ?: "00:00 - 00:00"
+                
+                // Map icons based on names for visual premium aesthetics
+                val icon = when {
+                    name.contains("pool", true) -> R.drawable.swimming_pool
+                    name.contains("gym", true) || name.contains("wellness", true) -> R.drawable.gym
+                    name.contains("spa", true) || name.contains("massage", true) -> R.drawable.spa
+                    name.contains("conference", true) || name.contains("meeting", true) || name.contains("room", true) -> R.drawable.conferrence_room
+                    else -> R.drawable.swimming_pool
+                }
+                AmenityItem(doc.id, name, hours, icon)
+            }
+            _amenities.value = list
+        }
     }
 
     fun selectAmenity(amenity: AmenityItem) {

@@ -1,9 +1,11 @@
 package com.example.madstayhub.presentation.staff
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.madstayhub.R
@@ -20,6 +22,10 @@ class StaffDashboardFragment : Fragment() {
 
     private var guestsListener: ListenerRegistration? = null
     private var ordersListener: ListenerRegistration? = null
+    private var sosListener: ListenerRegistration? = null
+
+    // Track simulated email dispatches to prevent duplicate logging on snapshot changes
+    private val notifiedEmergencies = mutableSetOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,11 +65,11 @@ class StaffDashboardFragment : Fragment() {
         }
         
         binding.fabScanner.setOnClickListener {
-            // Direct to KYC screen for convenience in prototype
             findNavController().navigate(R.id.action_to_kyc)
         }
 
         startLiveStats()
+        listenForEmergencies()
     }
 
     private fun startLiveStats() {
@@ -100,10 +106,75 @@ class StaffDashboardFragment : Fragment() {
             }
     }
 
+    private fun listenForEmergencies() {
+        sosListener = db.collection("emergencies")
+            .whereEqualTo("status", "active")
+            .addSnapshotListener { snapshot, error ->
+                if (error != null || snapshot == null || !isAdded) return@addSnapshotListener
+                
+                val activeAlert = snapshot.documents.firstOrNull()
+                if (activeAlert != null) {
+                    val id = activeAlert.id
+                    val name = activeAlert.getString("userName") ?: "Guest"
+                    val room = activeAlert.getString("roomNumber") ?: "N/A"
+                    val desc = activeAlert.getString("description") ?: "Emergency Alert Triggered"
+
+                    binding.tvEmergencyText.text = "SOS Alert: Room $room ($name)"
+                    binding.cardEmergency.visibility = View.VISIBLE
+
+                    binding.btnRespondSos.setOnClickListener {
+                        binding.btnRespondSos.isEnabled = false
+                        db.collection("emergencies").document(id)
+                            .update("status", "resolved")
+                            .addOnSuccessListener {
+                                if (isAdded) {
+                                    binding.btnRespondSos.isEnabled = true
+                                    Toast.makeText(context, "Emergency Resolved", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                            .addOnFailureListener { e ->
+                                if (isAdded) {
+                                    binding.btnRespondSos.isEnabled = true
+                                    Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                    }
+
+                    // Trigger simulated email dispatch warning to manager only once
+                    if (!notifiedEmergencies.contains(id)) {
+                        notifiedEmergencies.add(id)
+                        simulateManagerEmailAlert(name, room, desc)
+                    }
+                } else {
+                    binding.cardEmergency.visibility = View.GONE
+                }
+            }
+    }
+
+    private fun simulateManagerEmailAlert(guestName: String, roomNumber: String, desc: String) {
+        val emailBody = """
+            ================ SIMULATED EMAIL OUTBOX ================
+            To: esairfan112@gmail.com
+            Subject: CRITICAL SOS ALERT - Room $roomNumber
+            
+            An emergency alert has been triggered by guest:
+            Guest Name: $guestName
+            Room Number: $roomNumber
+            Details: $desc
+            
+            Action Required: Please respond immediately.
+            =========================================================
+        """.trimIndent()
+        
+        Log.e("SOS_EMAIL_SIMULATOR", emailBody)
+        Toast.makeText(context, "Simulated emergency email alert sent to Manager", Toast.LENGTH_LONG).show()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         guestsListener?.remove()
         ordersListener?.remove()
+        sosListener?.remove()
         _binding = null
     }
 }
