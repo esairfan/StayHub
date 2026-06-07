@@ -1,0 +1,117 @@
+[33mcommit 5807ccda55e6a74e4ce1d4f75180e4545c85dc3b[m
+Author: esairfan <ibrahimirfan815@gmail.com>
+Date:   Sun Jun 7 22:42:11 2026 +0500
+
+    Mad Project
+
+ .env                                               |   1 [32m+[m
+ .gitignore                                         |  15 [32m+[m
+ .idea/.gitignore                                   |   3 [32m+[m
+ .idea/.name                                        |   1 [32m+[m
+ .idea/AndroidProjectSystem.xml                     |   6 [32m+[m
+ .idea/compiler.xml                                 |   6 [32m+[m
+ .idea/deploymentTargetSelector.xml                 |  10 [32m+[m
+ .idea/deviceManager.xml                            |  13 [32m+[m
+ .idea/gradle.xml                                   |  18 [32m+[m
+ .idea/misc.xml                                     |   9 [32m+[m
+ .idea/runConfigurations.xml                        |  17 [32m+[m
+ Authentication                                     |   0
+ StayHub_Implementation_Plan.txt                    |  65 [32m++++[m
+ app/.gitignore                                     |   1 [32m+[m
+ app/build.gradle.kts                               | 105 [32m+++++[m
+ app/google-services.json                           |  47 [32m+++[m
+ app/proguard-rules.pro                             |  21 [32m+[m
+ .../example/madstayhub/ExampleInstrumentedTest.kt  |  24 [32m++[m
+ app/src/main/AndroidManifest.xml                   |  48 [32m+++[m
+ .../example/madstayhub/ForgotPasswordActivity.kt   |   4 [32m+[m
+ .../java/com/example/madstayhub/LoginActivity.kt   |   4 [32m+[m
+ .../java/com/example/madstayhub/MADStayhubApp.kt   |  31 [32m++[m
+ .../java/com/example/madstayhub/MainActivity.kt    |  93 [32m+++++[m
+ .../java/com/example/madstayhub/OTPActivity.kt     |   4 [32m+[m
+ .../com/example/madstayhub/RegisterActivity.kt     |   3 [32m+[m
+ .../java/com/example/madstayhub/SplashActivity.kt  |   4 [32m+[m
+ .../madstayhub/data/remote/api/GeminiApiService.kt |  26 [32m++[m
+ .../madstayhub/data/remote/model/GeminiModels.kt   |  33 [32m++[m
+ .../madstayhub/data/repository/GeminiRepository.kt | 125 [32m++++++[m
+ .../com/example/madstayhub/di/NetworkModule.kt     |  51 [32m+++[m
+ .../presentation/auth/ForgotPasswordFragment.kt    |  77 [32m++++[m
+ .../madstayhub/presentation/auth/LoginFragment.kt  | 182 [32m+++++++++[m
+ .../madstayhub/presentation/auth/OtpFragment.kt    |  69 [32m++++[m
+ .../presentation/auth/RegisterFragment.kt          | 179 [32m+++++++++[m
+ .../presentation/auth/RoleRouterFragment.kt        |  40 [32m++[m
+ .../madstayhub/presentation/auth/SplashFragment.kt |  72 [32m++++[m
+ .../presentation/guest/AiConciergeFragment.kt      |  81 [32m++++[m
+ .../presentation/guest/AiConciergeViewModel.kt     |  66 [32m++++[m
+ .../presentation/guest/AmenitiesHistoryFragment.kt | 126 [32m++++++[m
+ .../presentation/guest/AmenityBookingFragment.kt   | 196 [32m++++++++++[m
+ .../presentation/guest/AmenityBookingViewModel.kt  |  79 [32m++++[m
+ .../presentation/guest/AppSettingsFragment.kt      |  96 [32m+++++[m
+ .../madstayhub/presentation/guest/CartFragment.kt  | 106 [32m++++++[m
+ .../presentation/guest/ChatInboxFragment.kt        |  23 [32m++[m
+ .../presentation/guest/ChatMessageAdapter.kt       |  57 [32m+++[m
+ .../presentation/guest/ChatThreadFragment.kt       |  23 [32m++[m
+ .../presentation/guest/CheckoutFragment.kt         | 145 [32m+++++++[m
+ .../presentation/guest/CommunityBoardFragment.kt   |  35 [32m++[m
+ .../presentation/guest/CreatePostFragment.kt       |  23 [32m++[m
+ .../presentation/guest/DigitalRoomKeyFragment.kt   | 119 [32m++++++[m
+ .../presentation/guest/EmergencySosFragment.kt     | 115 [32m++++++[m
+ .../presentation/guest/GuestDashboardFragment.kt   | 181 [32m+++++++++[m
+ .../presentation/guest/HotelEventsFragment.kt      |  23 [32m++[m
+ .../presentation/guest/HousekeepingFragment.kt     | 125 [32m++++++[m
+ .../presentation/guest/InvoicesFragment.kt         |  23 [32m++[m
+ .../presentation/guest/KycUploadFragment.kt        | 203 [32m++++++++++[m
+ .../presentation/guest/LaundryTrackerFragment.kt   | 144 [32m+++++++[m
+ .../presentation/guest/LeaseViewerFragment.kt      |  51 [32m+++[m
+ .../presentation/guest/LeaseViewerViewModel.kt     |  31 [32m++[m
+ .../presentation/guest/MoodRoomControlFragment.kt  |  94 [32m+++++[m
+ .../presentation/guest/MoodRoomControlViewModel.kt |  46 [32m+++[m
+ .../presentation/guest/NearbyMapsFragment.kt       |  92 [32m+++++[m
+ .../presentation/guest/OrderProgressFragment.kt    |  84 [32m++++[m
+ .../presentation/guest/PackageTrackerFragment.kt   | 125 [32m++++++[m
+ .../presentation/guest/ParkingPassFragment.kt      |  23 [32m++[m
+ .../presentation/guest/PaymentHistoryFragment.kt   | 132 [32m+++++++[m
+ .../presentation/guest/PaymentWalletFragment.kt    | 148 [32m+++++++[m
+ .../presentation/guest/RentUtilitiesFragment.kt    | 144 [32m+++++++[m
+ .../presentation/guest/RoomServiceMenuFragment.kt  | 120 [32m++++++[m
+ .../presentation/guest/RoomServiceViewModel.kt     | 123 [32m++++++[m
+ .../guest/ServiceRequestsHistoryFragment.kt        | 186 [32m+++++++++[m
+ .../presentation/guest/ShuttleLiveMapFragment.kt   |  23 [32m++[m
+ .../presentation/guest/SmartRecommendFragment.kt   |  44 [32m+++[m
+ .../presentation/guest/SmartRecommendViewModel.kt  |  38 [32m++[m
+ .../presentation/guest/VideoCallFragment.kt        |  23 [32m++[m
+ .../presentation/guest/VisitorPreRegFragment.kt    | 212 [32m+++++++++++[m
+ .../presentation/guest/VisitorQrPassFragment.kt    | 128 [32m+++++++[m
+ .../presentation/guest/VoIPCallFragment.kt         |  23 [32m++[m
+ .../presentation/staff/CheckInTerminalFragment.kt  |  23 [32m++[m
+ .../staff/HousekeepingQueueFragment.kt             |  23 [32m++[m
+ .../staff/MaintenanceManagerFragment.kt            |  23 [32m++[m
+ .../presentation/staff/RevenueAnalyticsFragment.kt |  23 [32m++[m
+ .../presentation/staff/RoomAvailabilityFragment.kt |  23 [32m++[m
+ .../presentation/staff/StaffAmenitiesFragment.kt   |  23 [32m++[m
+ .../staff/StaffAnnouncementsFragment.kt            |  23 [32m++[m
+ .../presentation/staff/StaffChatHubFragment.kt     |  23 [32m++[m
+ .../presentation/staff/StaffDashboardFragment.kt   | 109 [32m++++++[m
+ .../presentation/staff/StaffGuestDetailFragment.kt | 229 [32m+++++++++++[m
+ .../presentation/staff/StaffGuestsFragment.kt      | 137 [32m+++++++[m
+ .../presentation/staff/StaffInventoryFragment.kt   |  23 [32m++[m
+ .../presentation/staff/StaffKycFragment.kt         | 201 [32m++++++++++[m
+ .../presentation/staff/StaffOrdersFragment.kt      |  23 [32m++[m
+ .../presentation/staff/StaffRequestsFragment.kt    |  23 [32m++[m
+ app/src/main/res/drawable/bg_chat_input.xml        |   6 [32m+[m
+ app/src/main/res/drawable/bg_gradient_bottom.xml   |   8 [32m+[m
+ app/src/main/res/drawable/bg_sos_circle.xml        |   5 [32m+[m
+ app/src/main/res/drawable/burger.png               | Bin [31m0[m -> [32m7819276[m bytes
+ app/src/main/res/drawable/choclate_lava.jpg        | Bin [31m0[m -> [32m11824[m bytes
+ app/src/main/res/drawable/club_sandwich.png        | Bin [31m0[m -> [32m7578770[m bytes
+ app/src/main/res/drawable/conferrence_room.jpg     | Bin [31m0[m -> [32m8542[m bytes
+ app/src/main/res/drawable/english_breakfast.png    | Bin [31m0[m -> [32m8141205[m bytes
+ app/src/main/res/drawable/gym.jpg                  | Bin [31m0[m -> [32m10951[m bytes
+ .../main/res/drawable/ic_launcher_background.xml   | 170 [32m+++++++++[m
+ .../main/res/drawable/ic_launcher_foreground.xml   |  30 [32m++[m
+ app/src/main/res/drawable/iced_latte.png           | Bin [31m0[m -> [32m7535277[m bytes
+ app/src/main/res/drawable/icon.png                 | Bin [31m0[m -> [32m1520582[m bytes
+ app/src/main/res/drawable/new_yorkcheese_cake.png  | Bin [31m0[m -> [32m6490866[m bytes
+ app/src/main/res/drawable/orange_juice.png         | Bin [31m0[m -> [32m6225102[m bytes
+ app/src/main/res/drawable/pancake_stack.jpg        | Bin [31m0[m -> [32m9959[m bytes
+ app/src/main/res/drawable/room.jpg                 | Bin [31m0[m -> [32m9260[m bytes
+ app/src/mai
