@@ -1,0 +1,64 @@
+================================================================================
+  STAYHUB — COMPREHENSIVE BACKEND IMPLEMENTATION PLAN
+  Objective: Powering 44+ UI Shells with Firebase, AI, and Real-time Services
+================================================================================
+
+This document outlines the technical architecture and backend integration steps
+to transform the StayHub UI prototype into a fully functional application.
+
+────────────────────────────────────────────────────────────────────────────────
+PHASE 1: AUTHENTICATION & ROLE-BASED ACCESS CONTROL (RBAC)
+────────────────────────────────────────────────────────────────────────────────
+[ ] 1.1 Firestore User Provisioning:
+    - Logic: On Registration, create a user document in Firestore: `/users/{uid}`.
+    - Fields: { "name", "role": "guest" | "staff", "isKycVerified": false, "fcmToken": "" }.
+[ ] 1.2 Multi-Graph Navigation Logic:
+    - Logic: SplashFragment fetches `role` from Firestore -> Swaps NavGraph to
+      `nav_staff.xml` or `nav_guest.xml` dynamically.
+[ ] 1.3 Identity Verification (KYC):
+    - Logic: Connect KycUploadFragment to Firebase Storage to upload ID images
+      and update the user's `kycDocUrl`.
+
+────────────────────────────────────────────────────────────────────────────────
+PHASE 2: AI CONCIERGE & SMART ROOM (INTELLIGENCE)
+────────────────────────────────────────────────────────────────────────────────
+[ ] 2.1 Gemini API Butler Integration:
+    - Logic: Retrofit streaming chat in AiConciergeFragment using the Gemini-1.5-Flash model.
+[ ] 2.2 AI Mood Control:
+    - Logic: User prompt -> Gemini returns JSON (Color, Music, Temp) -> Update
+      Firestore `/rooms/{num}` to simulate IoT state change.
+
+────────────────────────────────────────────────────────────────────────────────
+PHASE 3: REAL-TIME SERVICE FULFILLMENT
+────────────────────────────────────────────────────────────────────────────────
+[ ] 3.1 Live Service Queue:
+    - Logic: Housekeeping/Laundry requests write to Firestore. Staff Dashboard
+      uses SnapshotListeners to display new requests in real-time.
+[ ] 3.2 Emergency SOS Protocol:
+    - Logic: Hold trigger -> Write to `/emergencies` -> Cloud Function sends
+      Critical Importance Push Notification (FCM) to all staff devices.
+
+────────────────────────────────────────────────────────────────────────────────
+PHASE 4: COMMERCE & PROFESSIONAL COMMS
+────────────────────────────────────────────────────────────────────────────────
+[ ] 4.1 Stripe Payment Sheets:
+    - Logic: Use Firebase Cloud Functions to create PaymentIntents for Rent
+      and Room Service checkout flows.
+[ ] 4.2 Agora VoIP & Video:
+    - Logic: Integrate Agora SDK for the Call buttons. Link Guest UID to
+      dynamic channel names for staff to answer.
+[ ] 4.3 QR Logistics (ML Kit):
+    - Logic: Use ML Kit in CheckInTerminalFragment to scan guest Room Keys
+      and verify Visitor Passes against Firestore.
+
+────────────────────────────────────────────────────────────────────────────────
+PHASE 5: NOTIFICATIONS & OFFLINE SYNC
+────────────────────────────────────────────────────────────────────────────────
+[ ] 5.1 Firebase Cloud Messaging (FCM):
+    - Logic: Auto-notify users on Order Status changes, Chat messages, and Packages.
+[ ] 5.2 Room DB Caching:
+    - Logic: Implement local persistence for the Food Menu and User Profile.
+
+================================================================================
+  NEXT ACTION: Start with PHASE 1.1 (Firestore User Provisioning).
+================================================================================

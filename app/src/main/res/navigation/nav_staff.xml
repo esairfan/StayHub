@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_staff"
+    app:startDestination="@id/nav_staff_home">
+
+    <fragment
+        android:id="@+id/nav_staff_home"
+        android:name="com.example.madstayhub.presentation.staff.StaffDashboardFragment"
+        android:label="Staff Dashboard"
+        tools:layout="@layout/fragment_staff_dashboard">
+        <action android:id="@+id/action_to_kyc" app:destination="@id/staffKycFragment" />
+        <action android:id="@+id/action_to_guests" app:destination="@id/staffGuestsFragment" />
+        <action android:id="@+id/action_to_requests" app:destination="@id/staffRequestsFragment" />
+        <action android:id="@+id/action_to_chatHub" app:destination="@id/staffChatHubFragment" />
+        <action android:id="@+id/action_to_amenities" app:destination="@id/staffAmenitiesFragment" />
+        <action android:id="@+id/action_to_hkQueue" app:destination="@id/housekeepingQueueFragment" />
+        <action android:id="@+id/action_to_analytics" app:destination="@id/revenueAnalyticsFragment" />
+        <action android:id="@+id/action_to_announcements" app:destination="@id/staffAnnouncementsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/staffKycFragment"
+        android:name="com.example.madstayhub.presentation.staff.StaffKycFragment"
+        android:label="KYC Verification"
+        tools:layout="@layout/fragment_staff_kyc" />
+
+    <fragment
+        android:id="@+id/staffGuestsFragment"
+        android:name="com.example.madstayhub.presentation.staff.StaffGuestsFragment"
+        android:label="Guests Directory"
+        tools:layout="@layout/fragment_staff_guests">
+        <action android:id="@+id/action_guests_to_detail" app:destination="@id/staffGuestDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/staffGuestDetailFragment"
+        android:name="com.example.madstayhub.presentation.staff.StaffGuestDetailFragment"
+        android:label="Guest Details"
+        tools:layout="@layout/fragment_staff_guest_detail" />
+
+    <fragment
+        android:id="@+id/staffRequestsFragment"
+        android:name="com.example.madstayhub.presentation.staff.StaffRequestsFragment"
+        android:label="Service Requests"
+        tools:layout="@layout/fragment_staff_requests" />
+
+    <fragment
+        android:id="@+id/staffChatHubFragment"
+        android:name="com.example.madstayhub.presentation.staff.StaffChatHubFragment"
+        android:label="Chat Hub"
+        tools:layout="@layout/fragment_staff_chat_hub" />
+
+    <fragment
+        android:id="@+id/staffAmenitiesFragment"
+        android:name="com.example.madstayhub.presentation.staff.StaffAmenitiesFragment"
+        android:label="Manage Amenities"
+        tools:layout="@layout/fragment_staff_amenities" />
+
+    <fragment
+        android:id="@+id/housekeepingQueueFragment"
+        android:name="com.example.madstayhub.presentation.staff.HousekeepingQueueFragment"
+        android:label="HK Queue"
+        tools:layout="@layout/fragment_housekeeping_queue" />
+
+    <fragment
+        android:id="@+id/revenueAnalyticsFragment"
+        android:name="com.example.madstayhub.presentation.staff.RevenueAnalyticsFragment"
+        android:label="Analytics"
+        tools:layout="@layout/fragment_revenue_analytics" />
+
+    <fragment
+        android:id="@+id/staffAnnouncementsFragment"
+        android:name="com.example.madstayhub.presentation.staff.StaffAnnouncementsFragment"
+        android:label="Broadcast Announcements"
+        tools:layout="@layout/fragment_staff_announcements" />
+
+</navigation>

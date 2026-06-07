@@ -1,0 +1,65 @@
+================================================================================
+           STAYHUB — PREMIUM RESIDENCY & SMART HOTEL ECOSYSTEM
+                COMPLETE BACKEND IMPLEMENTATION MASTER PLAN
+================================================================================
+  Target Model : Gemini 2.5 Flash (Google Generative AI)
+  Database     : Firebase Firestore & Storage
+  Logic        : MVVM + Repository Pattern + Hilt DI
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+PHASE 1: AUTHENTICATION & ROLE-BASED ACCESS (COMPLETED)
+────────────────────────────────────────────────────────────────────────────────
+1.1 Firebase Auth Integration: Email/Pass + Google Sign-In logic.
+1.2 Firestore Provisioning: Automatic creation of /users/{uid} documents.
+1.3 RBAC Routing: Splash logic to swap nav_guest.xml or nav_staff.xml.
+1.4 Email Verification: Enforced verification before dashboard entry.
+1.5 Identity Verification: Firebase Storage upload logic for KYC docs.
+
+────────────────────────────────────────────────────────────────────────────────
+PHASE 2: THE INTELLIGENCE LAYER (GEMINI 2.5 FLASH) — 10 SUB-TASKS
+────────────────────────────────────────────────────────────────────────────────
+[ ] Part 1: API Infrastructure & Connectivity
+    - Setup Retrofit/OkHttp with GEMINI_API_KEY from .env.
+[ ] Part 2: Aria’s Personality (System Prompt)
+    - Define hidden context: Luxury butler Aria, concierge knowledge.
+[ ] Part 3: Basic Chat Logic (Request/Response)
+    - Implement generateContent for one-off guest queries.
+[ ] Part 4: Real-time Streaming (The Typewriter Effect)
+    - Use streamGenerateContent for word-by-word UI updates.
+[ ] Part 5: Conversational Memory (Context Handling)
+    - Manage history list to allow follow-up questions.
+[ ] Part 6: Mood Analysis Logic (Text-to-JSON)
+    - Prompt AI to return strict JSON for lighting/temp/music.
+[ ] Part 7: Mood Room UI Synchronization
+    - Link AI JSON output to background colors and room chips.
+[ ] Part 8: Smart Recommendations Engine
+    - Curate local luxury picks based on the guest's current city.
+[ ] Part 9: PDF Text Extraction (Noticeboard)
+    - Use PDFBox to pull text from Lease/Rule documents.
+[ ] Part 10: AI Document Summarization
+    - Generate 3-bullet plain-language summaries of complex PDFs.
+
+────────────────────────────────────────────────────────────────────────────────
+PHASE 3: REAL-TIME SERVICES & SAFETY
+────────────────────────────────────────────────────────────────────────────────
+3.1 Support Chat Sync: Firestore listeners for live guest-staff messaging.
+3.2 SOS Protocol: Emergency trigger -> Write to /emergencies -> Staff notification.
+3.3 Room Service: Local Cart state -> Firestore Order -> Staff dashboard queue.
+
+────────────────────────────────────────────────────────────────────────────────
+PHASE 4: COMMERCE & HARDWARE LOGISTICS
+────────────────────────────────────────────────────────────────────────────────
+4.1 Stripe Payments: PaymentSheet integration for Rent and Orders.
+4.2 ML Kit Scanning: QR Scanner in Staff app for Check-in and Packages.
+4.3 VoIP/Video Calls: Agora RTC integration for calls to the Front Desk.
+
+────────────────────────────────────────────────────────────────────────────────
+PHASE 5: NOTIFICATIONS & FINAL SYNC
+────────────────────────────────────────────────────────────────────────────────
+5.1 FCM Push: Setup channels for Chat, SOS alerts, and Order updates.
+5.2 Offline Caching: Room DB persistence for food menu and user profile.
+
+================================================================================
+                           END OF IMPLEMENTATION PLAN
+================================================================================

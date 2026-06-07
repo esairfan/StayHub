@@ -1,0 +1,94 @@
+================================================================================
+  STAYHUB — COMPREHENSIVE BACKEND IMPLEMENTATION PLAN
+  Objective: Powering 44+ UI Shells with Firebase, AI, and Real-time Services
+================================================================================
+
+This document outlines the technical architecture and backend integration steps
+to transform the StayHub UI prototype into a fully functional application.
+
+────────────────────────────────────────────────────────────────────────────────
+PHASE 1: AUTHENTICATION & ROLE-BASED ACCESS CONTROL (RBAC)
+────────────────────────────────────────────────────────────────────────────────
+Objective: Secure guest/staff data and route users to appropriate dashboards.
+
+[ ] 1.1 Firebase Auth & User Provisioning:
+    - Integration: FirebaseAuth (Email/Password & Google Sign-In).
+    - Logic: On Registration, create a user document in Firestore:
+      Path: `/users/{uid}`
+      Fields: { "name", "email", "role": "guest" | "staff", "roomNumber", "fcmToken", "isVerified": false }
+
+[ ] 1.2 Multi-Graph Navigation Logic:
+    - Implementation: In SplashFragment/MainActivity, check current user session.
+    - Logic: Fetch `role` from Firestore -> If "staff", load `nav_staff.xml`; else, load `nav_guest.xml`.
+
+[ ] 1.3 Identity Verification (KYC):
+    - Service: Firebase Storage.
+    - Logic: Upload ID photo -> Get URL -> Update `/users/{uid}/kycDocUrl`.
+
+────────────────────────────────────────────────────────────────────────────────
+PHASE 2: THE "ARIA" AI CONCIERGE & SMART ROOM
+────────────────────────────────────────────────────────────────────────────────
+Objective: Provide intelligent assistance and personalized room control.
+
+[ ] 2.1 Gemini AI Butler Integration:
+    - API: Google Generative AI (Gemini-2.5-Flash).
+    - Implementation: Retrofit + OkHttp for streaming chat responses.
+    - Logic: Prompt Aria with resident context (menu, amenities, check-out times).
+
+[ ] 2.2 Mood Room Control Logic:
+    - Flow: User describes mood -> Send to Gemini -> Gemini returns JSON:
+      { "colorHex": "#...", "musicGenre": "...", "temp": 22 }
+    - Action: Update UI visuals and sync state to Firestore for simulated IoT control.
+
+────────────────────────────────────────────────────────────────────────────────
+PHASE 3: REAL-TIME SERVICES (CHAT, SOS, & ORDERS)
+────────────────────────────────────────────────────────────────────────────────
+Objective: Enable instant communication and service fulfillment.
+
+[ ] 3.1 Support Chat & Messaging:
+    - Database: Firestore SnapshotListeners.
+    - Schema: `/chats/{chatId}/messages/{msgId}`.
+    - Features: Real-time bubble updates, read receipts, and push notifications.
+
+[ ] 3.2 Emergency SOS Protocol:
+    - Trigger: Button hold (5s) -> Write to `/emergencies` collection.
+    - Backend: Firebase Cloud Function triggers "High Priority" FCM alert to all Staff devices.
+
+[ ] 3.3 Room Service Ordering:
+    - Flow: CartViewModel (Local) -> Checkout -> Firestore `/orders`.
+    - Fulfillment: Staff dashboard listens for new order documents to update status (Pending -> Preparing -> Out for Delivery).
+
+────────────────────────────────────────────────────────────────────────────────
+PHASE 4: PAYMENTS, LOGISTICS, & CALLS
+────────────────────────────────────────────────────────────────────────────────
+Objective: Handle transactions and professional communication.
+
+[ ] 4.1 Stripe Payment Integration:
+    - Setup: Stripe Android SDK + Firebase Cloud Functions (Node.js).
+    - Flow: Generate `PaymentIntent` -> Show Stripe `PaymentSheet` -> Confirm order.
+
+[ ] 4.2 VoIP & Video Calls (Agora):
+    - Service: Agora RTC SDK.
+    - Logic: Dynamic channel generation based on Guest UID. Staff joins channel to answer.
+
+[ ] 4.3 QR Logistics (ML Kit & ZXing):
+    - Guest: Generate QR for Digital Room Key and Visitor Pass.
+    - Staff: Use ML Kit Barcode Scanning to scan guest QRs for Check-In and Package pickups.
+
+────────────────────────────────────────────────────────────────────────────────
+PHASE 5: NOTIFICATIONS & FINAL SYNC
+────────────────────────────────────────────────────────────────────────────────
+Objective: Keep users engaged and the system synchronized.
+
+[ ] 5.1 Push Notifications (FCM):
+    - Logic: Notify guests on "Order Status Update", "Package Arrived", and "Chat Message".
+
+[ ] 5.2 Offline Support (Room DB):
+    - Implementation: Cache food menu and user profile for faster loading and offline access.
+
+================================================================================
+NEXT ACTION:
+1. Configure Firebase project in Console.
+2. Implement Hilt Dependency Injection.
+3. Start with PHASE 1: Role-based registration logic.
+================================================================================

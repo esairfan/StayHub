@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_guest"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.madstayhub.presentation.guest.GuestDashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_guest_dashboard">
+        <action android:id="@+id/action_home_to_roomKey" app:destination="@id/digitalRoomKeyFragment" />
+        <action android:id="@+id/action_home_to_roomService" app:destination="@id/roomServiceMenuFragment" />
+        <action android:id="@+id/action_home_to_concierge" app:destination="@id/nav_concierge" />
+        <action android:id="@+id/action_home_to_rent" app:destination="@id/rentUtilitiesFragment" />
+        <action android:id="@+id/action_home_to_housekeeping" app:destination="@id/housekeepingFragment" />
+        <action android:id="@+id/action_home_to_laundry" app:destination="@id/laundryTrackerFragment" />
+        <action android:id="@+id/action_home_to_amenities" app:destination="@id/amenityBookingFragment" />
+        <action android:id="@+id/action_home_to_wallet" app:destination="@id/paymentWalletFragment" />
+        <action android:id="@+id/action_home_to_community" app:destination="@id/communityBoardFragment" />
+        <action android:id="@+id/action_home_to_visitors" app:destination="@id/visitorPreRegFragment" />
+        <action android:id="@+id/action_home_to_mood" app:destination="@id/moodRoomControlFragment" />
+        <action android:id="@+id/action_home_to_packages" app:destination="@id/packageTrackerFragment" />
+        <action android:id="@+id/action_home_to_emergencySos" app:destination="@id/emergencySosFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_explore"
+        android:name="com.example.madstayhub.presentation.guest.NearbyMapsFragment"
+        android:label="Nearby"
+        tools:layout="@layout/fragment_nearby_maps" />
+
+    <fragment
+        android:id="@+id/nav_concierge"
+        android:name="com.example.madstayhub.presentation.guest.AiConciergeFragment"
+        android:label="Aria"
+        tools:layout="@layout/fragment_ai_concierge" />
+
+    <fragment
+        android:id="@+id/nav_chat"
+        android:name="com.example.madstayhub.presentation.guest.ChatInboxFragment"
+        android:label="Messages"
+        tools:layout="@layout/fragment_chat_inbox">
+        <action android:id="@+id/action_chat_to_thread" app:destination="@id/chatThreadFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.madstayhub.presentation.guest.AppSettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_app_settings">
+        <action android:id="@+id/action_settings_to_paymentHistory" app:destination="@id/paymentHistoryFragment" />
+        <action android:id="@+id/action_settings_to_serviceRequestsHistory" app:destination="@id/serviceRequestsHistoryFragment" />
+        <action android:id="@+id/action_settings_to_amenitiesHistory" app:destination="@id/amenitiesHistoryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatThreadFragment"
+        android:name="com.example.madstayhub.presentation.guest.ChatThreadFragment"
+        android:label="Chat"
+        tools:layout="@layout/fragment_chat_thread">
+        <action android:id="@+id/action_to_voip" app:destination="@id/voipCallFragment" />
+        <action android:id="@+id/action_to_video" app:destination="@id/videoCallFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/voipCallFragment"
+        android:name="com.example.madstayhub.presentation.guest.VoIPCallFragment"
+        android:label="Audio Call"
+        tools:layout="@layout/fragment_voip_call" />
+
+    <fragment
+        android:id="@+id/videoCallFragment"
+        android:name="com.example.madstayhub.presentation.guest.VideoCallFragment"
+        android:label="Video Call"
+        tools:layout="@layout/fragment_video_call" />
+
+    <fragment
+        android:id="@+id/digitalRoomKeyFragment"
+        android:name="com.example.madstayhub.presentation.guest.DigitalRoomKeyFragment"
+        android:label="Room Key"
+        tools:layout="@layout/fragment_digital_room_key" />
+
+    <fragment
+        android:id="@+id/roomServiceMenuFragment"
+        android:name="com.example.madstayhub.presentation.guest.RoomServiceMenuFragment"
+        android:label="Menu"
+        tools:layout="@layout/fragment_room_service_menu">
+        <action android:id="@+id/action_menu_to_cart" app:destination="@id/cartFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.madstayhub.presentation.guest.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart">
+        <action android:id="@+id/action_cart_to_checkout" app:destination="@id/checkoutFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.example.madstayhub.presentation.guest.CheckoutFragment"
+        android:label="Checkout"
+        tools:layout="@layout/fragment_checkout">
+        <action android:id="@+id/action_checkout_to_orderProgress" app:destination="@id/orderProgressFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderProgressFragment"
+        android:name="com.example.madstayhub.presentation.guest.OrderProgressFragment"
+        android:label="Tracking"
+        tools:layout="@layout/fragment_order_progress" />
+
+    <fragment
+        android:id="@+id/emergencySosFragment"
+        android:name="com.example.madstayhub.presentation.guest.EmergencySosFragment"
+        android:label="SOS"
+        tools:layout="@layout/fragment_emergency_sos" />
+
+    <fragment
+        android:id="@+id/rentUtilitiesFragment"
+        android:name="com.example.madstayhub.presentation.guest.RentUtilitiesFragment"
+        android:label="Rent"
+        tools:layout="@layout/fragment_rent_utilities">
+        <action android:id="@+id/action_rent_to_invoices" app:destination="@id/invoicesFragment" />
+        <action android:id="@+id/action_rent_to_lease" app:destination="@id/leaseViewerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/invoicesFragment"
+        android:name="com.example.madstayhub.presentation.guest.InvoicesFragment"
+        android:label="Invoices"
+        tools:layout="@layout/fragment_invoices" />
+
+    <fragment
+        android:id="@+id/leaseViewerFragment"
+        android:name="com.example.madstayhub.presentation.guest.LeaseViewerFragment"
+        android:label="Lease"
+        tools:layout="@layout/fragment_lease_viewer" />
+
+    <fragment
+        android:id="@+id/housekeepingFragment"
+        android:name="com.example.madstayhub.presentation.guest.HousekeepingFragment"
+        android:label="Housekeeping"
+        tools:layout="@layout/fragment_housekeeping" />
+
+    <fragment
+        android:id="@+id/laundryTrackerFragment"
+        android:name="com.example.madstayhub.presentation.guest.LaundryTrackerFragment"
+        android:label="Laundry"
+        tools:layout="@layout/fragment_laundry_tracker" />
+
+    <fragment
+        android:id="@+id/moodRoomControlFragment"
+        android:name="com.example.madstayhub.presentation.guest.MoodRoomControlFragment"
+        android:label="Room Control"
+        tools:layout="@layout/fragment_mood_room_control" />
+
+    <fragment
+        android:id="@+id/smartRecommendFragment"
+        android:name="com.example.madstayhub.presentation.guest.SmartRecommendFragment"
+        android:label="Recommendations"
+        tools:layout="@layout/fragment_smart_recommend" />
+
+    <fragment
+        android:id="@+id/packageTrackerFragment"
+        android:name="com.example.madstayhub.presentation.guest.PackageTrackerFragment"
+        android:label="Packages"
+        tools:layout="@layout/fragment_package_tracker" />
+
+    <fragment
+        android:id="@+id/shuttleLiveMapFragment"
+        android:name="com.example.madstayhub.presentation.guest.ShuttleLiveMapFragment"
+        android:label="Shuttle"
+        tools:layout="@layout/fragment_shuttle_live_map" />
+
+    <fragment
+        android:id="@+id/communityBoardFragment"
+        android:name="com.example.madstayhub.presentation.guest.CommunityBoardFragment"
+        android:label="Community"
+        tools:layout="@layout/fragment_community_board">
+        <action android:id="@+id/action_community_to_createPost" app:destination="@id/createPostFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createPostFragment"
+        android:name="com.example.madstayhub.presentation.guest.CreatePostFragment"
+        android:label="New Post"
+        tools:layout="@layout/fragment_create_post" />
+
+    <fragment
+        android:id="@+id/visitorPreRegFragment"
+        android:name="com.example.madstayhub.presentation.guest.VisitorPreRegFragment"
+        android:label="Visitor"
+        tools:layout="@layout/fragment_visitor_pre_reg">
+        <action android:id="@+id/action_visitor_to_qr" app:destination="@id/visitorQrPassFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/visitorQrPassFragment"
+        android:name="com.example.madstayhub.presentation.guest.VisitorQrPassFragment"
+        android:label="QR Pass"
+        tools:layout="@layout/fragment_visitor_qr_pass" />
+
+    <fragment
+        android:id="@+id/kycUploadFragment"
+        android:name="com.example.madstayhub.presentation.guest.KycUploadFragment"
+        android:label="KYC"
+        tools:layout="@layout/fragment_kyc_upload" />
+
+    <fragment
+        android:id="@+id/parkingPassFragment"
+        android:name="com.example.madstayhub.presentation.guest.ParkingPassFragment"
+        android:label="Parking"
+        tools:layout="@layout/fragment_parking_pass" />
+
+    <fragment
+        android:id="@+id/amenityBookingFragment"
+        android:name="com.example.madstayhub.presentation.guest.AmenityBookingFragment"
+        android:label="Amenities"
+        tools:layout="@layout/fragment_amenity_booking" />
+
+    <fragment
+        android:id="@+id/paymentWalletFragment"
+        android:name="com.example.madstayhub.presentation.guest.PaymentWalletFragment"
+        android:label="Wallet"
+        tools:layout="@layout/fragment_payment_wallet" />
+
+    <fragment
+        android:id="@+id/hotelEventsFragment"
+        android:name="com.example.madstayhub.presentation.guest.HotelEventsFragment"
+        android:label="Events"
+        tools:layout="@layout/fragment_hotel_events" />
+
+    <fragment
+        android:id="@+id/paymentHistoryFragment"
+        android:name="com.example.madstayhub.presentation.guest.PaymentHistoryFragment"
+        android:label="Payment History"
+        tools:layout="@layout/fragment_payment_history" />
+
+    <fragment
+        android:id="@+id/serviceRequestsHistoryFragment"
+        android:name="com.example.madstayhub.presentation.guest.ServiceRequestsHistoryFragment"
+        android:label="Request History"
+        tools:layout="@layout/fragment_service_requests_history" />
+
+    <fragment
+        android:id="@+id/amenitiesHistoryFragment"
+        android:name="com.example.madstayhub.presentation.guest.AmenitiesHistoryFragment"
+        android:label="Amenity Bookings"
+        tools:layout="@layout/fragment_amenities_history" />
+
+</navigation>

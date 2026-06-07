@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal"
+    android:background="@color/background">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="Order Tracking"
+        app:navigationIcon="@android:drawable/ic_menu_revert" />
+
+    <TextView
+        android:id="@+id/tvOrderId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order #SH-9823"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+    <!-- Placeholder for Lottie Animation -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginVertical="32dp"
+        app:cardCornerRadius="100dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/primary_light">
+        <ImageView
+            android:id="@+id/ivStatusAnimation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_menu_today"
+            android:padding="48dp"
+            app:tint="@color/primary" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tvStatusTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chef is preparing your meal"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary" />
+
+    <TextView
+        android:id="@+id/tvStatusDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estimated delivery in 15 mins"
+        android:textColor="@color/text_secondary"
+        android:layout_marginTop="8dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Step Indicator -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="40dp">
+
+        <View android:layout_width="24dp" android:layout_height="24dp" android:background="@color/success" />
+        <View android:layout_width="40dp" android:layout_height="2dp" android:background="@color/success" />
+        <View android:layout_width="24dp" android:layout_height="24dp" android:background="@color/primary" />
+        <View android:layout_width="40dp" android:layout_height="2dp" android:background="#E0E0E0" />
+        <View android:layout_width="24dp" android:layout_height="24dp" android:background="#E0E0E0" />
+        <View android:layout_width="40dp" android:layout_height="2dp" android:background="#E0E0E0" />
+        <View android:layout_width="24dp" android:layout_height="24dp" android:background="#E0E0E0" />
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBackToHome"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Back to Dashboard" />
+
+</LinearLayout>

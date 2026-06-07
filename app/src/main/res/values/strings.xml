@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">MAD Stayhub</string>
+    <string name="amenity_icon">Amenity Icon</string>
+    <string name="status_icon">Status Icon</string>
+    <string name="room_key">Room Key</string>
+    <string name="room_service">Room Service</string>
+    <string name="ai_concierge">AI Butler Aria</string>
+    <string name="chat_support">Chat Support</string>
+    <string name="item_image">Item Image</string>
+    <string name="increase">Increase</string>
+    <string name="decrease">Decrease</string>
+
+    <!-- Auth & Onboarding -->
+    <string name="welcome_back">Welcome Back</string>
+    <string name="login_sub">Login to manage your stay</string>
+    <string name="join_stayhub">Join StayHub</string>
+    <string name="register_sub">Create your premium account</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="otp_sub">Enter the 6-digit code sent to you</string>
+    <string name="otp_sent_to">Code sent to %1$s</string>
+    <string name="send_reset_link">Send Reset Link</string>
+    <string name="back_to_login">Back to Login</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="otp_code">OTP Code</string>
+    <string name="full_name">Full Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="password">Password</string>
+
+    <!-- Guest Dashboard -->
+    <string name="welcome_guest">Welcome, Guest!</string>
+    <string name="welcome_guest_param">Welcome, %1$s!</string>
+    <string name="quick_actions">QUICK ACTIONS</string>
+    <string name="explore_nearby">EXPLORE NEARBY</string>
+    <string name="emergency_sos">EMERGENCY SOS</string>
+    <string name="rent">Rent</string>
+    <string name="laundry">Laundry</string>
+    <string name="community">Community</string>
+    <string name="visitors">Visitors</string>
+    <string name="mood_control">Mood</string>
+    <string name="packages">Packages</string>
+    <string name="amenity_booking">Book Amenities</string>
+    <string name="housekeeping">Housekeeping</string>
+
+    <!-- UI Labels -->
+    <string name="aria_typing">Aria is typing…</string>
+    <string name="ask_anything">Ask anything…</string>
+    <string name="save_preferences">Save Preferences</string>
+    <string name="confirm_booking">Confirm Booking</string>
+    <string name="respond">Respond</string>
+    <string name="details">Details</string>
+
+    <!-- Staff Terminal -->
+    <string name="staff_terminal">Staff Terminal</string>
+    <string name="management">MANAGEMENT</string>
+    <string name="recent_activity">RECENT ACTIVITY</string>
+
+    <!-- Google Auth -->
+    <string name="default_web_client_id" translatable="false">your_web_client_id_here</string>
+</resources>

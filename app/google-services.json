@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "365545698265",
+    "project_id": "hotel-stay-hub",
+    "storage_bucket": "hotel-stay-hub.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:365545698265:android:7d6279e7758bee37ecdfc8",
+        "android_client_info": {
+          "package_name": "com.example.madstayhub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "365545698265-f6lbgisq2kd8euenp4kno4uad3akqu62.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.madstayhub",
+            "certificate_hash": "63d7e9b3e03387888bb0b5e3d27097e8a8c0c582"
+          }
+        },
+        {
+          "client_id": "365545698265-61c7g1o6gevh3btotjidomdeql7kjlk0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYtjiCnaAW1c0SR08qcCV0CwMrN2dTmBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "365545698265-61c7g1o6gevh3btotjidomdeql7kjlk0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
